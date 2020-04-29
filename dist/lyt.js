@@ -158,7 +158,7 @@ var AgoraRTC = __importStar(require("agora-rtc-sdk"));
 
 var config_1 = require("./config");
 
-(function () {
+function main() {
   console.log('Lyt created');
   var rtc = {
     client: null,
@@ -228,6 +228,8 @@ var config_1 = require("./config");
       console.log('my status', evt.reason);
     });
   });
-});
+}
+
+main();
 },{"agora-rtc-sdk":"b5sh","./config":"C9JJ"}]},{},["wnJr"], null)
 //# sourceMappingURL=/lyt.js.map

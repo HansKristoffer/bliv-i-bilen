@@ -10,8 +10,7 @@ interface Rtc {
   params: { uid: null | string | number }
 }
 
-(() => {
-
+function main() {
   console.log('Lyt created')
 
   const rtc: Rtc = {
@@ -86,4 +85,6 @@ interface Rtc {
     })
 
   })
-})
+}
+
+main()
