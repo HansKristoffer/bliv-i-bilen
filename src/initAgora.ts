@@ -3,6 +3,7 @@ import * as AgoraRTC from 'agora-rtc-sdk'
 export function initAgora(role: "audience" | "host") {
   const appId = 'a62035647b4f46b4acc82a95879f3ed8'
   const channel = 'bliv-i-bilen'
+  let uid = null
 
   const client = AgoraRTC.createClient({mode: "live", codec: "h264"})
   client.init(appId, () => {
@@ -14,7 +15,7 @@ export function initAgora(role: "audience" | "host") {
 
     client.join(null, channel, null, (uid) => {
       console.log("join channel: " + channel + " success, uid: " + uid)
-      this.rtc.params.uid = uid
+      uid = uid
 
     }, function(err) {
       console.error("client join failed", err)
@@ -23,5 +24,9 @@ export function initAgora(role: "audience" | "host") {
     console.error(err)
   })
 
-  return client
+
+  return {
+    uid,
+    client
+  }
 }

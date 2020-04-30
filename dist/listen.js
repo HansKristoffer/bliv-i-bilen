@@ -147,10 +147,9 @@ Object.defineProperty(exports, "__esModule", {
 var AgoraRTC = __importStar(require("agora-rtc-sdk"));
 
 function initAgora(role) {
-  var _this = this;
-
   var appId = 'a62035647b4f46b4acc82a95879f3ed8';
   var channel = 'bliv-i-bilen';
+  var uid = null;
   var client = AgoraRTC.createClient({
     mode: "live",
     codec: "h264"
@@ -161,14 +160,17 @@ function initAgora(role) {
     client.setClientRole(role);
     client.join(null, channel, null, function (uid) {
       console.log("join channel: " + channel + " success, uid: " + uid);
-      _this.rtc.params.uid = uid;
+      uid = uid;
     }, function (err) {
       console.error("client join failed", err);
     });
   }, function (err) {
     console.error(err);
   });
-  return client;
+  return {
+    uid: uid,
+    client: client
+  };
 }
 
 exports.initAgora = initAgora;
@@ -179,10 +181,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var initAgora_1 = require("./initAgora");
+var initAgora_1 = require("./initAgora"); //@ts-ignore
+
 
 window.outscaleLive = function () {
-  var client = initAgora_1.initAgora('audience');
+  var state = {
+    status: 'Init',
+    uid: null,
+    rtcClient: null,
+    subscribe: function subscribe() {}
+  };
+
+  var _a = initAgora_1.initAgora('audience'),
+      uid = _a.uid,
+      client = _a.client;
+
   client.on("stream-added", function (evt) {
     var stream = evt.stream;
     console.log("New stream added: " + stream.getId());
@@ -208,10 +221,9 @@ window.outscaleLive = function () {
     console.log(new Date().toLocaleTimeString());
     console.log(evt); // rt.removeStream(stream.getId())
   });
-  return {
-    status: 'Init',
-    rtcClient: client
-  };
+  state.rtcClient = client;
+  state.status = 'Paused';
+  return state;
 };
 },{"./initAgora":"dqCj"}]},{},["tuft"], null)
 //# sourceMappingURL=/listen.js.map

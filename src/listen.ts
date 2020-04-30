@@ -4,10 +4,21 @@ import { initAgora } from './initAgora'
 interface OutscaleLive {
   rtcClient: AgoraRTC.Client
   status: 'Playing' | 'Init' | 'Paused'
+  uid: string
+  subscribe: any
 }
 
+//@ts-ignore
 window.outscaleLive = function(): OutscaleLive {
-  const client = initAgora('audience')
+  const state: OutscaleLive = {
+    status: 'Init',
+    uid: null,
+    rtcClient: null,
+    subscribe() {
+      
+    }
+  }
+  const { uid, client } = initAgora('audience')
 
   client.on("stream-added", (evt) => {
     let stream = evt.stream
@@ -39,8 +50,10 @@ window.outscaleLive = function(): OutscaleLive {
     // rt.removeStream(stream.getId())
   })
 
-  return {
-    status: 'Init',
-    rtcClient: client
-  }
+  state.rtcClient = client
+
+  state.status = 'Paused'
+
+  return state
 }
+
