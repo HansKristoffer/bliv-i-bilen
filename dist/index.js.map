@@ -1,1 +1,0 @@
-{"version":3,"sources":["index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAEA,CAAC,YAAK,CAQL,CARD","file":"index.js","sourceRoot":"../src","sourcesContent":["import * as AgoraRTC from 'agora-rtc-sdk'\n\n(() => {\n\n\n  \n\n\n\n\n})"]}
