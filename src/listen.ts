@@ -6,7 +6,7 @@ interface OutscaleLive {
   status: 'Playing' | 'Init' | 'Paused'
 }
 
-function outscaleLive(): OutscaleLive {
+window.outscaleLive = function(): OutscaleLive {
   const client = initAgora('audience')
 
   client.on("stream-added", (evt) => {

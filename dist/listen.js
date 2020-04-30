@@ -181,7 +181,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var initAgora_1 = require("./initAgora");
 
-function outscaleLive() {
+window.outscaleLive = function () {
   var client = initAgora_1.initAgora('audience');
   client.on("stream-added", function (evt) {
     var stream = evt.stream;
@@ -212,6 +212,6 @@ function outscaleLive() {
     status: 'Init',
     rtcClient: client
   };
-}
+};
 },{"./initAgora":"dqCj"}]},{},["tuft"], null)
 //# sourceMappingURL=/listen.js.map
