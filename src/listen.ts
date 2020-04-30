@@ -10,6 +10,10 @@ interface OutscaleLive {
 
 //@ts-ignore
 window.outscaleLive = function(): OutscaleLive {
+  console.log('---------------------')
+  console.log('My version: ', '0.0.1')
+  console.log('---------------------')
+  
   const state: OutscaleLive = {
     status: 'Init',
     uid: null,
