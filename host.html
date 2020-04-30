@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+<body>
+  
+  <div x-data="liveHost()" x-init="initAgora(); getMicrophones()">
+    <p x-text="status">status</p>
+    <p x-text="lastEventMsg">lastmsg</p>
+
+    <div id="local_stream"></div>
+
+    <a href="#" x-show="selectedMicrophone" x-on:click="startStream()">Start stream</a>
+
+    <p>Stream Id 
+      <span x-text="uid"></span>
+    </p>
+
+    <template x-if="selectedMicrophone">
+      <p>Valgt mic: 
+        <span x-text="selectedMicrophone.label"></span>
+      </p>
+    </template>
+
+    <template x-for="microphone in microphones" x-if="status !== 'Streaming'">
+      <a x-text="microphone.label" x-on:click="selectedMicrophone = microphone"></a>
+
+    </template>
+    
+
+  </div>
+
+  <script src="dist/host.js"></script>
+</body>
+</html>

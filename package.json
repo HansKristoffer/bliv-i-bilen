@@ -7,17 +7,22 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "dotenv -- nodemon -e ts,graphql -x ts-node src/index.ts",
     "build": "rimraf dist && tsc --build",
-    "build:parcel": "parcel build src/listen.ts --no-minify --target browser"
+    "build:parcel": "parcel build src/listen.ts src/host.ts --no-minify --target browser"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-transform-runtime": "^7.9.6",
     "@types/agora-rtc-sdk": "^3.0.1",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "rimraf": "^3.0.2",
     "ts-node": "^8.9.1",
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@babel/runtime": "^7.9.6",
     "agora-rtc-sdk": "^3.1.0"
   }
 }
