@@ -185,6 +185,9 @@ var initAgora_1 = require("./initAgora"); //@ts-ignore
 
 
 window.outscaleLive = function () {
+  console.log('---------------------');
+  console.log('My version: ', '0.0.1');
+  console.log('---------------------');
   var state = {
     status: 'Init',
     uid: null,
